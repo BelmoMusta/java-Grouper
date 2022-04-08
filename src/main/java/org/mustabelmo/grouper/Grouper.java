@@ -20,14 +20,35 @@ public abstract class Grouper<K, V> {
     }
 
     public V put(K key, V value) {
-        Collection<V> collection = internalMap.get(key);
-        if (collection == null) {
+        Collection<V> collection = get(key);
+        if (collection.isEmpty()) {
             collection = groupingStrategy.getCollection();
             internalMap.put(key, collection);
         }
         collection.add(value);
         return value;
     }
+
+    /**
+     * Remove all the values identified by a key from the group
+     * @param key
+     * @return
+     */
+    public Collection<V> remove(K key) {
+        return internalMap.remove(key);
+    }
+
+    /**
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public boolean remove(K key, V value) {
+        Collection<V> vs = get(key);
+        return vs.remove(value);
+    }
+
 
     public Collection<V> get(K key) {
         return Optional.ofNullable(internalMap.get(key))

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mustabelmo.grouper.ArrayListGrouper;
 import org.mustabelmo.grouper.Grouper;
+import org.mustabelmo.grouper.HashSetGrouper;
 
 import java.util.Collection;
 
@@ -18,6 +19,18 @@ public class TestGrouper {
         grouper.put(2, "c");
         Assert.assertEquals(4, grouper.get(1).size());
         Assert.assertEquals(4, grouper.get(0).size());
+    }
+
+    @Test
+    public void testHashSetGrouper() {
+        Grouper<Integer, String> grouper = new HashSetGrouper<>();
+        grouper.put(1, "a");
+        grouper.put(1, "b");
+        grouper.put(1, "c");
+        grouper.put(1, "c");
+        grouper.put(2, "c");
+        System.out.println(grouper);
+
     }
 
     @Test
