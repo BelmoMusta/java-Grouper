@@ -18,7 +18,7 @@ public class TestGrouper {
         grouper.put(1, "c");
         grouper.put(2, "c");
         Assert.assertEquals(4, grouper.get(1).size());
-        Assert.assertEquals(4, grouper.get(0).size());
+        
     }
 
     @Test

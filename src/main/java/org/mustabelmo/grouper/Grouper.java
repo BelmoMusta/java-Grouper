@@ -22,7 +22,6 @@ public abstract class Grouper<K, V> {
     public V put(K key, V value) {
         Collection<V> collection = get(key);
         if (collection.isEmpty()) {
-            collection = groupingStrategy.getCollection();
             internalMap.put(key, collection);
         }
         collection.add(value);
